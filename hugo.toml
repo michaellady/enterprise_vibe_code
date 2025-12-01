@@ -1,0 +1,62 @@
+baseURL = "https://michaellady.github.io/enterprise_vibe_code/"
+languageCode = "en-us"
+title = "Enterprise Vibe Code"
+
+# Theme via Hugo Modules
+[module]
+  [[module.imports]]
+    path = "github.com/adityatelange/hugo-PaperMod"
+
+# Needed for GitHub Pages subpath serving
+canonifyURLs = true
+
+[params]
+  env = "production"
+  description = "A blog about enterprise software development and vibe coding"
+  author = "Michael Lady"
+  showReadingTime = true
+  showShareButtons = true
+  showPostNavLinks = true
+  showBreadCrumbs = true
+  showCodeCopyButtons = true
+  disableSpecial1stPost = false
+  disableScrollToTop = false
+  hidemeta = false
+  hideSummary = false
+  showtoc = true
+  tocopen = false
+
+  [params.homeInfoParams]
+    Title = "Enterprise Vibe Code"
+    Content = "Exploring enterprise software development with good vibes"
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/michaellady"
+
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    name = "Posts"
+    url = "/posts/"
+    weight = 10
+  [[menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags/"
+    weight = 20
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 30
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = true
+    style = "monokai"

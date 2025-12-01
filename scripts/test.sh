@@ -8,7 +8,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 HUGO_BIN="${PROJECT_ROOT}/bin/hugo"
-HUGO_VERSION="0.139.4"
+HUGO_VERSION="0.152.2"
 SITE_URL="https://michaellady.github.io/enterprise_vibe_code/"
 
 # Colors for output
@@ -22,12 +22,12 @@ FAILED=0
 
 log_pass() {
     echo -e "  ${GREEN}✅ PASS${NC}: $1"
-    ((PASSED++))
+    PASSED=$((PASSED + 1))
 }
 
 log_fail() {
     echo -e "  ${RED}❌ FAIL${NC}: $1"
-    ((FAILED++))
+    FAILED=$((FAILED + 1))
 }
 
 log_skip() {

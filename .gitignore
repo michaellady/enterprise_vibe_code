@@ -1,0 +1,19 @@
+# Hugo build output
+public/
+resources/_gen/
+
+# Hugo binary (downloaded by setup.sh)
+bin/hugo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Hugo server
+.hugo_build.lock
