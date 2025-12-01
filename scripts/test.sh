@@ -7,9 +7,17 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
-HUGO_BIN="${PROJECT_ROOT}/bin/hugo"
 HUGO_VERSION="0.152.2"
 SITE_URL="https://michaellady.github.io/enterprise_vibe_code/"
+
+# Use ./bin/hugo if exists, otherwise fall back to system hugo (for CI)
+if [[ -x "${PROJECT_ROOT}/bin/hugo" ]]; then
+    HUGO_BIN="${PROJECT_ROOT}/bin/hugo"
+elif command -v hugo &>/dev/null; then
+    HUGO_BIN="hugo"
+else
+    HUGO_BIN=""
+fi
 
 # Colors for output
 RED='\033[0;31m'
@@ -42,8 +50,8 @@ test_hugo_build() {
     echo "TEST: Hugo build succeeds"
 
     # Check if hugo binary exists
-    if [[ ! -x "$HUGO_BIN" ]]; then
-        log_fail "Hugo binary not found at $HUGO_BIN (exit code 127 equivalent)"
+    if [[ -z "$HUGO_BIN" ]]; then
+        log_fail "Hugo binary not found (run ./scripts/setup.sh or install hugo)"
         return 1
     fi
 

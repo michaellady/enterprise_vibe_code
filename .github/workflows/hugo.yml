@@ -36,7 +36,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.22'
+          go-version: '1.25.4'
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
@@ -58,6 +58,9 @@ jobs:
           key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-hugomod-
+
+      - name: Run test harness
+        run: ./scripts/test.sh all
 
       - name: Build with Hugo
         env:
