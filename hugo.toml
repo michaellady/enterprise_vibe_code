@@ -1,4 +1,4 @@
-baseURL = "https://michaellady.github.io/enterprise_vibe_code/"
+baseURL = "https://enterprisevibecode.com/"
 languageCode = "en-us"
 title = "Enterprise Vibe Code"
 
@@ -7,8 +7,7 @@ title = "Enterprise Vibe Code"
   [[module.imports]]
     path = "github.com/adityatelange/hugo-PaperMod"
 
-# Needed for GitHub Pages subpath serving
-canonifyURLs = true
+# canonifyURLs not needed for apex domain hosting
 
 [params]
   env = "production"
