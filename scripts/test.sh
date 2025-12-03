@@ -8,7 +8,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 HUGO_VERSION="0.152.2"
-SITE_URL="https://michaellady.github.io/enterprise_vibe_code/"
+SITE_URL="https://enterprisevibecode.com/"
 NEW_DOMAIN="enterprisevibecode.com"
 NEW_SITE_URL="https://enterprisevibecode.com/"
 OLD_SUBPATH_URL="https://mikelady.com/enterprise_vibe_code/"

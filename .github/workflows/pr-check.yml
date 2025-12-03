@@ -52,7 +52,7 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL "https://michaellady.github.io/enterprise_vibe_code/"
+            --baseURL "https://enterprisevibecode.com/"
 
       - name: Verify build output
         run: |
