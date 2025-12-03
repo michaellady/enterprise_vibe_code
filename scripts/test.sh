@@ -9,6 +9,13 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 HUGO_VERSION="0.152.2"
 SITE_URL="https://michaellady.github.io/enterprise_vibe_code/"
+NEW_DOMAIN="enterprisevibecode.com"
+NEW_SITE_URL="https://enterprisevibecode.com/"
+OLD_SUBPATH_URL="https://mikelady.com/enterprise_vibe_code/"
+MAIN_SITE_URL="https://mikelady.com/"
+
+# GitHub Pages IP addresses for custom domain verification
+GITHUB_PAGES_IPS=("185.199.108.153" "185.199.109.153" "185.199.110.153" "185.199.111.153")
 
 # Use ./bin/hugo if exists, otherwise fall back to system hugo (for CI)
 if [[ -x "${PROJECT_ROOT}/bin/hugo" ]]; then
@@ -145,6 +152,46 @@ test_workflow_valid() {
 }
 
 # =============================================================================
+# TEST: DNS Configuration (b44.8xv RED → b44.i8e GREEN)
+# Expects: enterprisevibecode.com A records point to GitHub Pages IPs
+# =============================================================================
+test_dns_config() {
+    echo "TEST: DNS A records for $NEW_DOMAIN point to GitHub Pages"
+
+    if ! command -v dig &>/dev/null; then
+        log_fail "dig command not found (install dnsutils)"
+        return 1
+    fi
+
+    local DNS_IPS
+    DNS_IPS=$(dig +short "$NEW_DOMAIN" A 2>/dev/null | sort)
+
+    if [[ -z "$DNS_IPS" ]]; then
+        log_fail "No A records found for $NEW_DOMAIN"
+        return 1
+    fi
+
+    # Check if at least one GitHub Pages IP is present
+    local FOUND_GITHUB_IP=false
+    for ip in "${GITHUB_PAGES_IPS[@]}"; do
+        if echo "$DNS_IPS" | grep -q "$ip"; then
+            FOUND_GITHUB_IP=true
+            break
+        fi
+    done
+
+    if [[ "$FOUND_GITHUB_IP" == "false" ]]; then
+        log_fail "DNS A records do not point to GitHub Pages IPs"
+        echo "    Expected one of: ${GITHUB_PAGES_IPS[*]}"
+        echo "    Got: $(echo "$DNS_IPS" | tr '\n' ' ')"
+        return 1
+    fi
+
+    log_pass "DNS A records correctly point to GitHub Pages"
+    return 0
+}
+
+# =============================================================================
 # TEST: Live Site (abn.7 RED → abn.8 GREEN)
 # Expects: Site returns 200 and contains expected content
 # =============================================================================
@@ -228,11 +275,14 @@ case "${1:-all}" in
     live)
         test_live_site
         ;;
+    dns)
+        test_dns_config
+        ;;
     all|--live)
         run_all_tests "$@"
         ;;
     *)
-        echo "Usage: $0 [build|content|workflow|live|all] [--live]"
+        echo "Usage: $0 [build|content|workflow|dns|live|all] [--live] [--migration]"
         exit 1
         ;;
 esac
