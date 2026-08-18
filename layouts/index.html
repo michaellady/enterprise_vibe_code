@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Enterprise Vibe Code | Dependable workflows for ecommerce teams</title>
+  <meta name="description" content="Practical AI implementation and software engineering for ecommerce brands and agencies: reporting workflows, Shopify QA, team AI systems, and prototype handoff.">
+  <meta property="og:title" content="Enterprise Vibe Code | Make the work dependable">
+  <meta property="og:description" content="Four bounded builds for the reporting, storefront releases, AI workflows, and internal apps your ecommerce team relies on.">
+  <meta property="og:image" content="og.png">
+  <meta name="theme-color" content="#f4efe3">
+  <link rel="icon" href="evc-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&amp;display=swap">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Enterprise Vibe Code",
+    "url": "https://enterprisevibecode.com/",
+    "description": "Founder-led implementation for dependable software and AI workflows used by ecommerce brands and agencies.",
+    "founder": [
+      { "@type": "Person", "name": "Mike Lady" },
+      { "@type": "Person", "name": "Matt Lady" }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --paper: #f4efe3;
+      --lift: #fffdf7;
+      --ink: #0b2940;
+      --ink-deep: #061b2a;
+      --body: #33464f;
+      --muted: #65737a;
+      --green: #0c7443;
+      --green-bright: #168f55;
+      --green-soft: #dcecdf;
+      --yellow: #f0bd32;
+      --yellow-soft: #f8e8a6;
+      --red-soft: #f3ddd2;
+      --blue-soft: #dce8ee;
+      --line: rgba(11, 41, 64, .24);
+      --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+      --shell: 74rem;
+      --gutter: clamp(1rem, 4vw, 3rem);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 100% 0, rgba(240, 189, 50, .18), transparent 28rem),
+        var(--paper);
+      color: var(--body);
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      line-height: 1.58;
+      text-rendering: optimizeLegibility;
+    }
+    ::selection { background: var(--yellow); color: var(--ink-deep); }
+    :focus-visible { outline: 3px solid var(--yellow); outline-offset: 4px; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    p { margin-top: 0; }
+    .shell { width: min(calc(100% - 2 * var(--gutter)), var(--shell)); margin-inline: auto; }
+    .skip-link {
+      position: fixed; z-index: 100; top: .7rem; left: .7rem;
+      padding: .65rem .9rem; background: var(--ink-deep); color: #fff;
+      font-weight: 800; text-decoration: none; transform: translateY(-180%);
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .site-header {
+      position: sticky; top: 0; z-index: 20;
+      border-bottom: 1.5px solid var(--ink);
+      background: rgba(244, 239, 227, .95);
+      backdrop-filter: blur(10px);
+    }
+    .site-header .shell {
+      display: flex; min-height: 4.4rem; align-items: center;
+      justify-content: space-between; gap: 1rem;
+    }
+    .brand { display: inline-flex; align-items: center; gap: .65rem; min-height: 2.75rem; text-decoration: none; }
+    .brand img { width: 2.4rem; height: 2.4rem; border: 1px solid var(--line); border-radius: .2rem; }
+    .brand-name { display: grid; color: var(--ink); font-size: .74rem; font-weight: 800; letter-spacing: .075em; line-height: 1.1; text-transform: uppercase; }
+    .brand-name b:last-child { color: var(--green); }
+    .site-nav { display: flex; align-items: center; gap: .2rem; }
+    .site-nav > a { display: inline-flex; align-items: center; min-height: 2.9rem; padding: .4rem .7rem; font-size: .82rem; font-weight: 800; text-decoration: none; }
+    .site-nav > a:not(.button):hover { color: var(--green); text-decoration: underline; text-underline-offset: .35em; }
+
+    .button {
+      display: inline-flex; min-height: 3rem; align-items: center; justify-content: center;
+      padding: .72rem 1.25rem; border: 1.5px solid var(--ink-deep);
+      background: var(--green); color: #fff; font-weight: 800; text-decoration: none;
+      box-shadow: 4px 4px 0 var(--yellow); transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .button:hover { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--yellow); }
+    .button.small { min-height: 2.75rem; padding: .5rem .9rem; font-size: .85rem; }
+    .button.yellow { background: var(--yellow); color: var(--ink-deep); box-shadow: 4px 4px 0 var(--lift); }
+    .text-link { display: inline-flex; min-height: 2.75rem; align-items: center; color: var(--green); font-weight: 800; text-decoration: underline; text-underline-offset: .35em; }
+
+    h1, h2, h3 { color: var(--ink); }
+    h1 { margin: 0 0 1.25rem; max-width: 14ch; font-size: clamp(2.9rem, 5.2vw, 4.65rem); font-weight: 900; letter-spacing: -.055em; line-height: .97; }
+    h1 em { display: block; color: var(--green-bright); font-style: normal; }
+    h2 { margin: 0 0 1rem; font-size: clamp(2rem, 3.8vw, 3.05rem); font-weight: 900; letter-spacing: -.04em; line-height: 1.05; }
+    h3 { margin: 0 0 .55rem; font-size: 1.12rem; font-weight: 800; line-height: 1.25; }
+    .lede { max-width: 47rem; font-size: 1.15rem; }
+    .section { padding-block: 4.25rem; }
+    .section-head { max-width: 49rem; margin-bottom: 2.5rem; }
+    .section-head p:last-child { margin-bottom: 0; }
+
+    .hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(22rem, .9fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; padding-block: 4.4rem 4.8rem; }
+    .hero .lede strong { color: var(--ink); }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 1.8rem; }
+    .hero-note { margin: 1rem 0 0; color: var(--muted); font-size: .96rem; }
+    .workboard { border: 1.5px solid var(--ink-deep); background: var(--lift); box-shadow: 9px 9px 0 var(--yellow); }
+    .workboard-head { padding: .85rem 1rem; border-bottom: 1.5px solid var(--ink-deep); background: var(--ink-deep); color: var(--paper); font-family: var(--mono); font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .work-row { display: grid; grid-template-columns: 7.2rem 1fr; gap: 1rem; align-items: center; padding: 1rem; }
+    .work-row + .work-row { border-top: 1px dashed var(--line); }
+    .work-row .label { color: var(--green); font-family: var(--mono); font-size: .76rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+    .work-row p { margin: 0; color: var(--ink); font-size: .93rem; font-weight: 700; line-height: 1.4; }
+    .workboard-foot { padding: .9rem 1rem; border-top: 1.5px solid var(--ink-deep); background: var(--green-soft); color: var(--ink); font-size: .9rem; font-weight: 800; }
+
+    .band-lift { border-block: 1.5px solid var(--ink); background: var(--lift); }
+    .offer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .offer { position: relative; display: flex; min-height: 100%; flex-direction: column; padding: 1.5rem; border: 1.5px solid var(--ink); background: var(--paper); box-shadow: 5px 5px 0 var(--green-soft); }
+    .offer.flagship { box-shadow: 5px 5px 0 var(--yellow); }
+    .offer-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .6rem; margin-bottom: .9rem; }
+    .offer-number { color: var(--green); font-family: var(--mono); font-size: .78rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    .badge { padding: .24rem .52rem; border: 1px solid var(--ink); background: var(--yellow-soft); color: var(--ink); font-family: var(--mono); font-size: .7rem; font-weight: 800; text-transform: uppercase; }
+    .offer h3 { max-width: 26ch; font-size: 1.35rem; }
+    .offer-copy { margin-bottom: .85rem; }
+    .offer-copy strong { color: var(--ink); }
+    .offer-price { margin: auto 0 0; padding-top: .9rem; border-top: 1px solid var(--line); color: var(--ink); font-family: var(--mono); font-size: .82rem; font-weight: 800; }
+    .offer-cta { margin-top: 2rem; }
+
+    .band-ink { border-block: 1.5px solid var(--ink-deep); background: var(--ink-deep); color: var(--paper); }
+    .band-ink h2, .band-ink h3 { color: var(--lift); }
+    .method-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .8rem; }
+    .method-step { padding: 1.2rem; border: 1px solid rgba(255, 255, 255, .35); background: rgba(255, 255, 255, .04); }
+    .method-step .num { display: block; margin-bottom: .7rem; color: var(--yellow); font-family: var(--mono); font-weight: 800; }
+    .method-step p { margin: 0; color: #d7e0dc; font-size: .95rem; }
+    .method-note { margin: 1.4rem 0 0; color: #d7e0dc; }
+    .fit-strip { margin: 1.4rem 0 0; padding: 1rem 1.1rem; border: 1px solid rgba(255, 255, 255, .35); background: rgba(240, 189, 50, .1); color: #e7ece9; }
+    .fit-strip strong { color: var(--yellow); }
+
+    .founder-proof { border-block: 1.5px solid var(--ink-deep); background: var(--ink-deep); color: var(--paper); }
+    .founder-proof h2, .founder-proof h3 { color: var(--lift); }
+    .founder-proof .lede { color: #d7e0dc; }
+    .pair-statement { max-width: 61rem; margin: 0 0 2rem; padding: 1rem 1.2rem; border-left: .4rem solid var(--yellow); background: rgba(255, 255, 255, .06); color: var(--lift); font-size: 1.08rem; font-weight: 700; }
+    .founder-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .founder-feature { display: flex; min-height: 100%; flex-direction: column; padding: 1.5rem; border: 1px solid rgba(255, 255, 255, .38); background: rgba(255, 255, 255, .045); }
+    .founder-head { display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: 1.25rem; align-items: center; margin-bottom: 1.2rem; }
+    .founder-head img { width: 8rem; height: 8rem; border: 1.5px solid var(--lift); object-fit: cover; box-shadow: 6px 6px 0 var(--green); }
+    .founder-feature.mike .founder-head img { box-shadow: 6px 6px 0 var(--yellow); }
+    .founder-name { margin: 0 0 .25rem; font-size: 1.55rem; }
+    .founder-role { margin: 0; color: #b9c7c5; font-family: var(--mono); font-size: .76rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+    .founder-stat { display: block; margin-bottom: .15rem; color: var(--yellow); font-size: clamp(2.8rem, 5vw, 4.4rem); font-weight: 900; letter-spacing: -.055em; line-height: .95; }
+    .founder-stat-label { margin-bottom: 1rem; color: var(--lift); font-size: 1.12rem; font-weight: 800; }
+    .founder-feature > p { color: #d7e0dc; }
+    .outcome-list { display: grid; gap: .55rem; margin: auto 0 1rem; padding: 1rem 0 0; border-top: 1px solid rgba(255, 255, 255, .25); list-style: none; }
+    .outcome-list li { position: relative; padding-left: 1.45rem; color: var(--lift); font-weight: 700; }
+    .outcome-list li::before { content: "→"; position: absolute; left: 0; color: var(--yellow); font-family: var(--mono); }
+    .founder-links { display: flex; flex-wrap: wrap; gap: .2rem 1rem; }
+    .founder-links a { display: inline-flex; min-height: 2.75rem; align-items: center; color: var(--yellow); font-weight: 800; text-decoration: underline; text-underline-offset: .3em; }
+    .dialed-note { margin-top: 1rem; padding: 1.15rem 1.25rem; border: 1px solid rgba(255, 255, 255, .35); background: rgba(240, 189, 50, .1); color: #e7ece9; }
+    .dialed-note strong { color: var(--yellow); }
+    .dialed-note a { color: var(--yellow); font-weight: 800; text-underline-offset: .25em; }
+
+    .faq { max-width: 52rem; }
+    .faq details { border: 1.5px solid var(--ink); background: var(--lift); }
+    .faq details + details { margin-top: .7rem; }
+    .faq summary { display: flex; min-height: 3.25rem; align-items: center; justify-content: space-between; gap: 1rem; padding: .85rem 1.2rem; color: var(--ink); font-weight: 800; cursor: pointer; list-style: none; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; color: var(--green); font-family: var(--mono); font-size: 1.25rem; }
+    .faq details[open] summary { border-bottom: 1px solid var(--line); }
+    .faq details[open] summary::after { content: "−"; }
+    .answer { padding: 1rem 1.2rem 1.2rem; }
+    .answer p:last-child { margin-bottom: 0; }
+
+    .band-green { border-top: 1.5px solid var(--ink-deep); background: var(--green); color: var(--lift); }
+    .band-green h2 { color: #fff; }
+    .band-green .lede { color: var(--green-soft); }
+    .band-green .alt { margin-top: 1.1rem; color: var(--green-soft); }
+    .band-green .alt a { display: inline-flex; min-height: 2.75rem; align-items: center; color: #fff; font-weight: 800; }
+
+    .site-footer { border-top: 1.5px solid var(--ink); background: var(--paper); }
+    .site-footer .shell { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.6rem; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: .2rem 1.2rem; }
+    .footer-links a { display: inline-flex; min-height: 2.75rem; align-items: center; color: var(--ink); font-weight: 800; text-decoration: underline; text-underline-offset: .3em; }
+    .site-footer small { color: var(--muted); }
+
+    @media (max-width: 960px) {
+      .workboard { max-width: 40rem; }
+      .method-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .founder-grid { grid-template-columns: minmax(0, 1fr); }
+    }
+    @media (max-width: 700px) {
+      :root { --gutter: 1rem; }
+      .site-nav > a:not(.button) { display: none; }
+      .section { padding-block: 3.5rem; }
+      .hero { grid-template-columns: minmax(0, 1fr); padding-block: 3.4rem 4rem; }
+      h1 { font-size: clamp(2.8rem, 14vw, 4rem); }
+      .offer-grid, .method-grid { grid-template-columns: minmax(0, 1fr); }
+      .work-row { grid-template-columns: 6.3rem 1fr; gap: .7rem; }
+      .founder-head { grid-template-columns: 5.5rem minmax(0, 1fr); }
+      .founder-head img { width: 5.5rem; height: 5.5rem; }
+      .workboard { box-shadow: 6px 6px 0 var(--yellow); }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="#top" aria-label="Enterprise Vibe Code — back to top">
+        <img src="evc-logo.webp" alt="" width="48" height="48">
+        <span class="brand-name"><b>Enterprise</b><b>Vibe Code</b></span>
+      </a>
+      <nav class="site-nav" aria-label="Sections">
+        <a href="#offers">What we fix</a>
+        <a href="#method">How we work</a>
+        <a href="#why">Why EVC</a>
+        <a class="button small" href="https://cal.com/mattlady/evc-fit-call">Book a fit call</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero shell" id="top">
+      <div>
+        <h1>AI makes code cheap. <em>We make the work dependable.</em></h1>
+        <p class="lede"><strong>Practical AI implementation + software engineering for ecommerce brands + agencies.</strong> We turn recurring work and fragile prototypes into systems your team can run and own—from reporting and team AI workflows to Shopify QA and app handoff.</p>
+        <div class="hero-actions">
+          <a class="button" href="https://cal.com/mattlady/evc-fit-call">Book a fit call</a>
+          <a class="text-link" href="#offers">See the starting menu ↓</a>
+        </div>
+        <p class="hero-note">Four focused builds from $7.5K. Direct founder delivery. No paid audit.</p>
+      </div>
+
+      <aside class="workboard" aria-label="The four kinds of work Enterprise Vibe Code fixes">
+        <div class="workboard-head">The work that keeps coming back</div>
+        <div class="work-row"><span class="label">Reporting</span><p>Stop re-doing the same work each week.</p></div>
+        <div class="work-row"><span class="label">Shopify</span><p>Check the buying journeys that matter after site changes.</p></div>
+        <div class="work-row"><span class="label">Team AI</span><p>Turn scattered AI habits into a workflow the whole team can use.</p></div>
+        <div class="work-row"><span class="label">Prototype</span><p>Make a useful app testable, releasable, and handoff-ready.</p></div>
+        <div class="workboard-foot">Find the weak link → fix the smallest useful thing → hand over the keys.</div>
+      </aside>
+    </section>
+
+    <section class="band-lift" id="offers">
+      <div class="shell section">
+        <div class="section-head">
+          <h2>Four ways to start. One real problem at a time.</h2>
+          <p class="lede">Bring the work that keeps coming back. We’ll tell you which build fits—or when an existing product or simpler process is the smarter answer.</p>
+        </div>
+
+        <div class="offer-grid">
+          <article class="offer">
+            <div class="offer-top"><span class="offer-number">01 · Reporting</span></div>
+            <h3>Reporting Workflow Build</h3>
+            <p class="offer-copy"><strong>Your team already has the data.</strong> It still spends each week reconciling numbers, taking screenshots, rebuilding slides, and explaining what changed.</p>
+            <p class="offer-copy">We replace that repeat work with one reporting workflow that shows the right answer, its source, its owner, and the next action.</p>
+            <p class="offer-price">From $10K · 3–5 weeks</p>
+          </article>
+
+          <article class="offer">
+            <div class="offer-top"><span class="offer-number">02 · Shopify</span></div>
+            <h3>Shopify Launch QA + Ongoing Monitoring</h3>
+            <p class="offer-copy"><strong>A theme, app, promotion, or release changes.</strong> We check the journeys that matter before launch and keep checking as the site changes.</p>
+            <p class="offer-copy">Launch QA, scheduled monitoring, evidence-backed alerts, and test maintenance—using existing tools or custom checks where they fit.</p>
+            <p class="offer-price">Setup from $7.5K · 2–4 weeks · ongoing coverage available</p>
+          </article>
+
+          <article class="offer">
+            <div class="offer-top"><span class="offer-number">03 · Team AI</span></div>
+            <h3>Team AI Workflow Build</h3>
+            <p class="offer-copy"><strong>Useful AI work is scattered</strong> across private chats, prompts, docs, and one person’s habits. The team keeps starting over.</p>
+            <p class="offer-copy">We turn one repeated job into a shared workflow with trusted sources, examples, human review, and a clear owner.</p>
+            <p class="offer-price">From $10K · 4–8 weeks</p>
+          </article>
+
+          <article class="offer flagship">
+            <div class="offer-top"><span class="offer-number">04 · Prototype</span><span class="badge">Flagship</span></div>
+            <h3>Prototype Hardening &amp; Handoff</h3>
+            <p class="offer-copy"><strong>A useful app now has real users, money, or data behind it.</strong> Its maker is still the only person who can safely change or run it.</p>
+            <p class="offer-copy">We add the tests, controlled releases, warning signals, recovery, and handoff it needs—without assuming a rewrite.</p>
+            <p class="offer-price">From $10K · 3–6 weeks</p>
+          </article>
+        </div>
+
+        <div class="offer-cta">
+          <a class="button" href="https://cal.com/mattlady/evc-fit-call">Talk through one workflow</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="band-ink" id="method">
+      <div class="shell section">
+        <div class="section-head">
+          <h2>Small enough to finish. Clear enough to hand over.</h2>
+          <p class="lede">We do not begin with “let’s automate everything.” We begin with one consequence, one owner, and an observable finish line.</p>
+        </div>
+        <div class="method-grid">
+          <article class="method-step"><span class="num">01</span><h3>Find the weak link</h3><p>Map the people, source, decision, failure, and business consequence.</p></article>
+          <article class="method-step"><span class="num">02</span><h3>Make the smallest reliable fix</h3><p>Stop, clarify, configure, connect, or build only what the job requires.</p></article>
+          <article class="method-step"><span class="num">03</span><h3>Prove it works</h3><p>Agree on acceptance, show a working slice early, and test the failure path—not only the happy path.</p></article>
+          <article class="method-step"><span class="num">04</span><h3>Hand it over</h3><p>Transfer access, evidence, training, limits, recovery steps, and a named owner.</p></article>
+        </div>
+        <p class="method-note">Every build ends with a working system, an ownership pack, and a 30-day window for EVC to fix in-scope defects in our work.</p>
+        <p class="fit-strip"><strong>Good fit:</strong> one named workflow or app, a real consequence, and someone who will own it. <strong>Not a fit:</strong> “automate everything,” 24/7 operations, compliance certification, or an open-ended backlog.</p>
+      </div>
+    </section>
+
+    <section class="band-lift" id="faq">
+      <div class="shell section">
+        <div class="section-head">
+          <h2>Plain answers before a sales call.</h2>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>Do we need to know which of the four builds we need?</summary>
+            <div class="answer"><p>No. Tell us what keeps coming back, who relies on it, and what happens when it goes wrong. We will map that to a build—or tell you a simpler path fits better.</p></div>
+          </details>
+          <details>
+            <summary>What happens after the build?</summary>
+            <div class="answer"><p>You own the work in your accounts, plus its access, documentation, evidence, training, limits, recovery steps, and runbook. Every build includes 30 days of in-scope defect support; Shopify monitoring and test maintenance can continue after setup.</p></div>
+          </details>
+          <details>
+            <summary>What happens after the fit call?</summary>
+            <div class="answer"><p>If one of the four builds fits, we schedule a scope call and send a fixed proposal with users, sources or environments, acceptance, exclusions, timing, and price. If it does not fit, we say so.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="founder-proof" id="why">
+      <div class="shell section">
+        <div class="section-head">
+          <h2>The people you meet are the people doing the work.</h2>
+          <p class="lede">No sales handoff to an anonymous delivery team. Matt and Mike stay involved from fit and scope through implementation, adoption, and ownership.</p>
+        </div>
+
+        <p class="pair-statement">Matt sees what the workflow must do for the business. Mike sees what can break when it becomes real. EVC gives you both kinds of judgment in the same build.</p>
+
+        <div class="founder-grid">
+          <article class="founder-feature mike">
+            <div class="founder-head">
+              <img src="mike-lady.jpg" alt="Mike Lady" width="512" height="512">
+              <div>
+                <h3 class="founder-name">Mike Lady</h3>
+                <p class="founder-role">Co-founder · Technical lead</p>
+              </div>
+            </div>
+            <strong class="founder-stat">12 years</strong>
+            <p class="founder-stat-label">building and operating production software</p>
+            <p>Mike is a senior DevOps engineer on an AI tools team at a public company, supporting 10,000+ engineers. At EVC, he turns fast output into software another qualified person can test, release, recover, and own.</p>
+            <ul class="outcome-list">
+              <li>Tests for the failures that matter</li>
+              <li>Controlled releases and a recovery path</li>
+              <li>A technical handoff that survives the original builder</li>
+            </ul>
+            <div class="founder-links"><a href="https://github.com/michaellady">GitHub</a><a href="https://www.youtube.com/@EnterpriseVibeCode">YouTube</a><a href="https://www.linkedin.com/in/mikelady/">LinkedIn</a></div>
+          </article>
+
+          <article class="founder-feature matt">
+            <div class="founder-head">
+              <img src="matt-lady.jpg" alt="Matt Lady" width="320" height="320">
+              <div>
+                <h3 class="founder-name">Matt Lady</h3>
+                <p class="founder-role">Co-founder · Commerce + delivery</p>
+              </div>
+            </div>
+            <strong class="founder-stat">10 years</strong>
+            <p class="founder-stat-label">across ecommerce brands, agencies, SaaS, operations, and creative</p>
+            <p>Matt translates the technical work into the business job: who uses it, which decision it supports, what failure costs, and what the team needs to adopt it after EVC leaves.</p>
+            <ul class="outcome-list">
+              <li>Scope tied to a real business consequence</li>
+              <li>Plain-language decisions and client communication</li>
+              <li>Adoption and ownership built into the handoff</li>
+            </ul>
+            <div class="founder-links"><a href="https://mattlady.com">mattlady.com</a><a href="https://www.linkedin.com/in/mattlady/">LinkedIn</a></div>
+          </article>
+        </div>
+
+        <p class="dialed-note"><strong>What DIALED shows:</strong> Mike takes a complicated release problem and turns it into a clear system with stages, checks, and recovery. That is the value of the framework—not the repo itself. Clients get fewer hidden assumptions, safer changes, and a system their team can operate after handoff. <a href="https://github.com/michaellady/dialed">Inspect DIALED on GitHub →</a></p>
+      </div>
+    </section>
+
+    <section class="band-green" id="contact">
+      <div class="shell section">
+        <div class="section-head">
+          <h2>Bring us the work that keeps coming back.</h2>
+          <p class="lede">One report, storefront, AI workflow, or useful prototype. We’ll tell you whether EVC fits—and when a simpler answer is better.</p>
+        </div>
+        <a class="button yellow" href="https://cal.com/mattlady/evc-fit-call">Book a fit call</a>
+        <p class="alt">Prefer email? <a href="mailto:matt@enterprisevibecode.com">matt@enterprisevibecode.com</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell">
+      <a class="brand" href="#top">
+        <img src="evc-logo.webp" alt="" width="48" height="48">
+        <span class="brand-name"><b>Enterprise</b><b>Vibe Code</b></span>
+      </a>
+      <nav class="footer-links" aria-label="Footer"><a href="#offers">Starting menu</a><a href="https://www.youtube.com/@EnterpriseVibeCode">YouTube</a><a href="https://cal.com/mattlady/evc-fit-call">Book a fit call</a></nav>
+      <small>© 2026 Enterprise Vibe Code, LLC</small>
+    </div>
+  </footer>
+</body>
+</html>
